@@ -1,5 +1,8 @@
+const userService = require("../services/users.services");
+
+
 const getUserList = (req, res) => {
-    userList = [{'id': 1, 'name': 'min'}]
+    userList = userService.getUserList();
     return res.send(userList)
 }
 
