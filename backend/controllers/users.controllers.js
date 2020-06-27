@@ -1,12 +1,19 @@
 const userService = require("../services/users.services");
 
 
-const getUserList = (req, res) => {
-    userList = userService.getUserList();
-    return res.send(userList)
+const getUserIdByName = (req, res) => {
+    let userName = req.body.name;
+
+    if (!userName) {
+        return res.send(404)
+    }
+
+    userService.getUserIdByName(userName).then( (userId) => {
+        return res.send({'userId': userId})
+    });
 }
 
 
 module.exports = {
-    getUserList
+    getUserIdByName
 }
