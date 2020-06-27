@@ -2,11 +2,15 @@ const userService = require("../services/rooms.services")
 
 
 const getRoomId = (req, res) => {
-    userId = req.body.userId;
+    let userId = req.body.userId;
     
-    roomId = userService.getRoomIdByUserId(userId);
-    return res.send({'roomId': roomId})
+    if (!userId){
+        return res.send(404)
+    }
     
+    userService.getRoomIdByUserId(userId).then( (roomId) => {
+        return res.send({'roomId': roomId})
+    });
 }
 
 module.exports = {
