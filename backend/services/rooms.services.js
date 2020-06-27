@@ -1,21 +1,9 @@
-const getRoomIdByUserId = (userId) => {
-    let roomId;
+const { rooms } = require('../models');
 
-    mappingTable = [
-        {'userId': 1, 'roomId': 1},
-        {'userId': 2, 'roomId': 1},
-        {'userId': 3, 'roomId': 2},
-        {'userId': 4, 'roomId': 2},
-        {'userId': 5, 'roomId': 2},
-    ]
-    
-    mappingTable.forEach(element => {    
-        if (element.userId === userId) {
-            roomId = element.roomId;
-        }
-    });
+const getRoomIdByUserId = async (userId) => {
+    let room = await rooms.findOne({where: {'userId': userId}});
 
-    return roomId
+    return room.dataValues.roomId
 }
 
 module.exports = {

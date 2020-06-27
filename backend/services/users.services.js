@@ -1,15 +1,10 @@
-const getUserList = () => {
-    userTable = [
-        {'userId': 1, 'userName': 'min'},
-        {'userId': 2, 'userName': 'gyu'},
-        {'userId': 3, 'userName': 'jino'},
-        {'userId': 4, 'userName': 'yoon'},
-        {'userId': 5, 'userName': 'jun'}
-    ]
+const { users } = require('../models');
 
-    return userTable
+const getUserIdByName = async (userName) => {
+    let user = await users.findOne({where: {'name': userName}});
+    return user.dataValues.id
 }
 
 module.exports = {
-    getUserList
+    getUserIdByName
 }
