@@ -3,11 +3,11 @@ const usersModel = require('./users.models');
 const roomsModel = require('./rooms.models');
 
 const sequelize =  new Sequelize(
-    process.env.DB_DATABASE || 'socket',
-    process.env.DB_USER || 'openapi',
-    process.env.DB_PASSWORD || 'ftMtavBd1D5g8Y|Mt}g*A[#^KYw$E&9u',
+    process.env.DB_DATABASE,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
     {
-        host: process.env.DB_HOST || 'ls-ae7d2e7e8492f4296553764b03d1952683c419a0.clp2wgnz2mnw.ap-northeast-2.rds.amazonaws.com',
+        host: process.env.DB_HOST,
         dialect: 'mysql'
     }
 )
