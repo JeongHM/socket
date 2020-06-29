@@ -1,22 +1,24 @@
-const createError = require('http-errors');
-const express = require('express');
+const cors = require('cors');
 const path = require('path');
-const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const express = require('express');
+const createError = require('http-errors');
+const cookieParser = require('cookie-parser');
 
 const usersRouter = require('./routes/users.routes');
 const roomsRouter = require('./routes/rooms.routes')
 
 const app = express();
-
+app.io = require('socket.io')();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(cors());
 app.use(logger('dev'));
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
