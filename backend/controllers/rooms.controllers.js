@@ -2,7 +2,7 @@ const userService = require("../services/rooms.services")
 
 
 const getRoomId = (req, res) => {
-    let userId = req.body.userId;
+    let userId = req.query.userId;
     
     if (!userId){
         return res.send(404)
