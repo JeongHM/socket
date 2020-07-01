@@ -6,4 +6,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/room', (req, res, next) => {
+  res.render('chat')
+})
+
 module.exports = router;
